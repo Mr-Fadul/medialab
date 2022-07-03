@@ -3,6 +3,7 @@ VERSION 0.6
 deps:
     FROM golang:1.18-alpine
     WORKDIR /build
+    COPY ../../pkg/utils+artifact/* /pkg/utils
     COPY go.mod go.sum ./
     RUN go mod download
 
@@ -31,5 +32,6 @@ release-tag:
 release:
     FROM +docker
     COPY +release-tag/version .
-    ARG app_version="$(cat version)"
+    ARG VERSION="$(cat version)"
+    ARG app_version=$VERSION
     SAVE IMAGE --push digitaltv-recorder:$VERSION

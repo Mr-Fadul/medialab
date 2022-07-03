@@ -1,6 +1,7 @@
 VERSION 0.6
 
 all-unit-test:
+    BUILD ./pkg/utils+unit-test
     BUILD ./services/digitaltv-recorder+unit-test
 
 all-docker:
