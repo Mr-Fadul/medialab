@@ -1,0 +1,38 @@
+VERSION 0.6
+
+deps:
+    FROM golang:1.18-alpine
+    WORKDIR /build
+    COPY ../../pkg/utils+artifact/* /pkg/utils
+    COPY ../../pkg/gcp+artifact/* /pkg/gcp
+    COPY go.mod go.sum ./
+    RUN go mod download
+
+compile:
+    FROM +deps
+    COPY . .
+    RUN CGO_ENABLED=0 GOOS=linux go build -o handle-video-intelligence main.go
+    SAVE ARTIFACT /build
+
+unit-test:
+    FROM +compile
+    COPY main_test.go .
+    RUN CGO_ENABLED=0 go test
+
+docker: 
+    FROM DOCKERFILE -f Dockerfile +compile/build/*
+    SAVE IMAGE handle-video-intelligence:latest
+
+release-tag:
+    FROM golang:1.17-alpine
+    RUN go install github.com/maykonlf/semver-cli/cmd/semver@v1.0.2
+    COPY .semver.yaml .
+    RUN semver get release > version
+    SAVE ARTIFACT version
+
+release:
+    FROM +docker
+    COPY +release-tag/version .
+    ARG VERSION="$(cat version)"
+    ARG app_version=$VERSION
+    SAVE IMAGE --push handle-video-intelligence:$VERSION

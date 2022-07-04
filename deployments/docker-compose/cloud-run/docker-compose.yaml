@@ -1,0 +1,19 @@
+version: '3'
+services:
+  channel_1:
+    image: handle-video-intelligence:latest
+    container_name: handle-video-intelligence
+    restart: always
+    env_file:
+      - ./deploy.env
+    ports:
+      - 8080:8080
+    #healthcheck:
+    #  test: ["CMD", "curl", "-f", "http://localhost:8080"]
+    #  interval: 30s
+    #  timeout: 20s
+    #  retries: 3
+    volumes:
+      - ~/Documents/gcp_access/medialab-01.json:/app/config/gcp.json:ro
+
+      
