@@ -4,6 +4,8 @@ deps:
     FROM golang:1.18-alpine
     WORKDIR /build
     COPY ../../pkg/utils+artifact/* /pkg/utils
+    COPY ../../pkg/transfer+artifact/* /pkg/transfer
+    COPY ../../pkg/gstd+artifact/* /pkg/gstd
     COPY go.mod go.sum ./
     RUN go mod download
 

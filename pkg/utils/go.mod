@@ -3,6 +3,7 @@ module github.com/alpheres/medialab/pkg/utils
 go 1.18
 
 require (
+	github.com/itchyny/timefmt-go v0.1.3
 	github.com/joho/godotenv v1.4.0
 	github.com/rs/zerolog v1.27.0
 )

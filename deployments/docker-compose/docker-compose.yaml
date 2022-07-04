@@ -13,7 +13,7 @@ services:
       timeout: 20s
       retries: 3
     volumes:
-      - ~/gcp_access/medialab-01.json:/app/config/gcp.json:ro
+      - ~/Documents/gcp_access/medialab-01.json:/app/config/gcp.json:ro
       - ~/Videos:/app/recording:rw
       #- recording:/app/recording:rw
     devices:

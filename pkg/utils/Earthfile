@@ -8,7 +8,7 @@ deps:
 
 artifact:
     FROM +deps
-    COPY utils.go .
+    COPY . .
     SAVE ARTIFACT .
 
 unit-test:

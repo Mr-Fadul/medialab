@@ -1,0 +1,18 @@
+VERSION 0.6
+
+deps:
+    FROM golang:1.18-alpine
+    WORKDIR /pkg/transfer
+    COPY ../../pkg/utils+artifact/* /pkg/utils
+    COPY go.mod go.sum ./
+    RUN go mod download
+
+artifact:
+    FROM +deps
+    COPY . .
+    SAVE ARTIFACT .
+
+unit-test:
+    FROM +artifact
+    COPY transfer_test.go .
+    RUN go test
