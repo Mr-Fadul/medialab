@@ -16,11 +16,11 @@ all-release:
 # docker-compose section
 digital-recorder-dev-up:
     LOCALLY
-    RUN docker-compose -f deployments/docker-compose/digital-recorder/docker-compose.yaml up
+    RUN docker-compose -f deployments/docker-compose/digitaltv-recorder/docker-compose.yaml up
 
 digital-recorder-dev-down:
     LOCALLY
-    RUN docker-compose -f deployments/docker-compose/digital-recorder/docker-compose.yaml down
+    RUN docker-compose -f deployments/docker-compose/digitaltv-recorder/docker-compose.yaml down
 
 cloud-run-dev-up:
     LOCALLY

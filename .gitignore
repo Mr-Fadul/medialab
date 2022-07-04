@@ -19,7 +19,6 @@
 
 # Go workspace file
 go.work
-digitaltv-recorder
 recording/
 .env
 deploy.env
