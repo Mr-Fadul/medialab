@@ -28,6 +28,7 @@ RUN apt-get update && \
     libdaemon-dev \
     libjansson-dev \
     libsoup2.4-dev \
+    libedit-dev \
     python3-pip \
     gstreamer1.0-plugins-base \
     gstreamer1.0-plugins-good \
@@ -46,7 +47,7 @@ RUN apt-get update && \
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ## Install GSTD
-RUN git clone --depth 1 --branch v0.14.0 https://github.com/RidgeRun/gstd-1.x.git
+RUN git clone --depth 1 --branch v0.15.0 https://github.com/RidgeRun/gstd-1.x.git
 RUN cd gstd-1.x && \
     ./autogen.sh && \
     ./configure && \
